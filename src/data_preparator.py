@@ -1,6 +1,8 @@
 '''
 Created on Dec 13, 2017
 
+Prepares the dataset as numpy arrays for training
+
 Assumes fer2013 dataset is in ../data/fer2013
 
 @author: Vladimir Petkov
@@ -8,6 +10,7 @@ Assumes fer2013 dataset is in ../data/fer2013
 
 import pandas as pd
 import numpy as np
+from keras.utils import to_categorical
 
 def flat_to_matrix(pixels_string, size=(48,48)):
     pixels_arr = np.array(map(int, pixels_string.split()))
@@ -16,13 +19,16 @@ def flat_to_matrix(pixels_string, size=(48,48)):
 def _get_data(data_type):
     df=pd.read_csv('../data/fer2013.csv', sep=',')
 
-    df_test = df[df.Usage == data_type] # to filter test data
-    df_test['pixels'] = df_test.pixels.apply(lambda x: flat_to_matrix(x))
+    df = df[df.Usage == data_type]
+    df['pixels'] = df.pixels.apply(lambda x: flat_to_matrix(x))
 
-    x_test = np.array([matrix for matrix in df_test.pixels])
-    y_test = np.array([emotion for emotion in df_test.emotion])
+    x = np.array([matrix for matrix in df.pixels])
+    y = np.array([emotion for emotion in df.emotion])
     
-    return x_test, y_test
+    x = x.reshape(-1, x.shape[1], x.shape[2], 1)
+    y = to_categorical(y)
+    
+    return x, y
 
 def get_test_data():
     return _get_data('PublicTest')
