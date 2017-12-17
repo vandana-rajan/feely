@@ -13,6 +13,7 @@ from keras.optimizers import SGD
 from data_preparator import get_test_data
 from data_preparator import get_train_data
 
+
 def create_model():
     print 'Creating model'
     model = Sequential()
