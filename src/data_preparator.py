@@ -35,6 +35,10 @@ def _get_data(data_type=None, rows_to_read=None):
 
 
 def get_test_data():
+    return _get_data('PrivateTest')
+
+
+def get_validation_data():
     return _get_data('PublicTest')
 
 
@@ -42,8 +46,8 @@ def get_train_data():
     return _get_data('Training')
 
 
-def get_emotion_from_mapping(emotion_code):
-    code_to_emotion = {0:'Angry', 1:'Disgust', 2:'Fear', 3:'Happy', 4:'Sad', 5:'Surprise', 6:'Neutral'}
+def get_emotion_from_code(emotion_code):
+    code_to_emotion = {0:'Anger', 1:'Disgust', 2:'Fear', 3:'Happiness', 4:'Sadness', 5:'Surprise', 6:'Neutral'}
     return code_to_emotion[emotion_code]
 
 
