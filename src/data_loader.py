@@ -3,7 +3,7 @@ Created on Dec 13, 2017
 
 Prepares the dataset as numpy arrays for training
 
-Assumes fer2013 dataset is in ../data/fer2013
+Assumes fer2013 dataset - is in ../data/fer2013/fer2013.csv
 
 @author: Vladimir Petkov
 '''
@@ -19,7 +19,7 @@ def flat_to_matrix(pixels_string, size=(48, 48)):
 
 
 def _get_data(data_type=None, rows_to_read=None):
-    df = pd.read_csv('../data/fer2013.csv', sep=',', nrows=rows_to_read)
+    df = pd.read_csv('../data/fer2013/fer2013.csv', sep=',', nrows=rows_to_read)
 
     if data_type is not None:
         df = df[df.Usage == data_type]

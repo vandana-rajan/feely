@@ -9,9 +9,9 @@ TODO:
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
-from data_preparator import get_test_data
-from data_preparator import get_train_data
-from src.data_preparator import get_validation_data
+from data_loader import get_test_data
+from data_loader import get_train_data
+from data_loader import get_validation_data
 
 
 def create_model():
@@ -37,6 +37,7 @@ def create_model():
 
     model.add(Flatten())
     model.add(Dense(64, activation='relu'))
+    model.add(Dropout(0.2))
     model.add(Dense(64, activation='relu'))
     model.add(Dropout(0.2))
     model.add(Dense(7, activation='softmax'))

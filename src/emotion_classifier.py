@@ -8,7 +8,7 @@ TODO
 
 from os import getenv, path
 from keras.models import model_from_json
-from src.data_preparator import get_emotion_from_code
+from data_loader import get_emotion_from_code
 import numpy as np
 
 MODEL_DIR = getenv("MODEL_DIR", "../models")
@@ -29,7 +29,7 @@ class EmotionClassifier(object):
         with open(path.join(models_path, MODEL_CONFIG_FILENAME), "r") as json_file: 
             model_json = json_file.read()
         model = model_from_json(model_json)
-        model.load_weights(path.join(models_path + MODEL_WEIGHTS_FILENAME))
+        model.load_weights(path.join(models_path, MODEL_WEIGHTS_FILENAME))
         return model
 
     def classify(self, image):
